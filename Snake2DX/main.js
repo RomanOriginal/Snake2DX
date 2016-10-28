@@ -39,7 +39,6 @@ $(document).ready(function () {
     }
       init();
     
-    
     function create_snake(){
         var length = 5;
         snake_array = [];
@@ -75,9 +74,10 @@ $(document).ready(function () {
         
         //collide code, hot the edges
         if(nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision(nx, ny, snake_array)){
-            init();
+            
             $('#final_score').html(score);
             $('#overlay').fadeIn(300);
+            
             return;
         }
         
@@ -102,7 +102,7 @@ $(document).ready(function () {
         
         
         checkscore(score);
-        
+       
         //your score
         $('#score').html('Your score: ' +score);
         
@@ -116,14 +116,17 @@ $(document).ready(function () {
         ctx.strokeRect(x*cw,y*cw,cw,cw);
     }
         
-    function check_collision(x,y,array) {
-        for(var i = 0; i< array.length; i++){
-            if(array[i].x == x && array[i].y == y){
-                return true;
-            }
-            return false;
-        }
-    }
+   function check_collision(x, y, array)
+	{
+		//This function will check if the provided x/y coordinates exist
+		//in an array of cells or not
+		for(var i = 0; i < array.length; i++)
+		{
+			if(array[i].x == x && array[i].y == y)
+			 return true;
+		}
+		return false;
+	}
     
     
     function checkscore(score){
